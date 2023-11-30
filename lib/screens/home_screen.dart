@@ -11,8 +11,10 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15.0),
+        // builder to rebuild UI if any change happen in customer cubit
         child: BlocBuilder<CustomerCubit, CustomerState>(
           builder: (context, state) {
+            // listview to show all list of customers inside cubit
             return ListView.separated(
               itemBuilder: (context, i){
                 return Container(
@@ -30,6 +32,7 @@ class HomeScreen extends StatelessWidget {
                         Spacer(),
                         IconButton(
                           onPressed: (){
+                            // take customer index from listview to +1 to it's counter
                             BlocProvider.of<CustomerCubit>(context).addOne(i);
                           }, 
                           icon: Icon(Icons.add_box),
